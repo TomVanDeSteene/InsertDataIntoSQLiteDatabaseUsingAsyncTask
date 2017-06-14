@@ -14,7 +14,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addProduct(View view){
-        
         startActivity(new Intent(this, SaveInfoActivity.class));
+    }
+
+    public void displayProducts(View view){
+        startActivity(new Intent(this, DisplayProductActivity.class));
     }
 }

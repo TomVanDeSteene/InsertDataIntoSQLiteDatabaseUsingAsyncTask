@@ -2,6 +2,7 @@ package com.tomvandesteene.insertdataintosqlitedatabaseusingasynctask;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -40,6 +41,15 @@ public class DbOperations extends SQLiteOpenHelper {
         contentValues.put(ProductContract.ProductEntry.QUANTITY, quantity);
         db.insert(ProductContract.ProductEntry.TABLE_NAME, null, contentValues);
         Log.d("Database operations", "One row inserted ...");
+    }
+
+    public Cursor getInformations(SQLiteDatabase db){
+
+        String[] projections = {ProductContract.ProductEntry.ID, ProductContract.ProductEntry.NAME,
+                ProductContract.ProductEntry.PRICE, ProductContract.ProductEntry.QUANTITY};
+        Cursor cursor = db.query(ProductContract.ProductEntry.TABLE_NAME, projections, null, null, null, null, null);
+
+        return cursor;
     }
 
     @Override
